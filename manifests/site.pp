@@ -5,14 +5,18 @@
 #  template => 'motd/motd.epp',
 #  content  => "Hello world\n",
 #}
-$my_directory = '/etc/puppetlabs/puppet/'
-$directory_contents = generate('/usr/bin/ls', '/etc/puppetlabs/puppet/')
+$directory = '/etc/puppetlabs/puppet'
 
-$directory_contents.each |$item| {
-  notify{ $item :
-
-  }
+file { $directory:
+  ensure => directory,
 }
+
+$files = file("${directory}").children.each |$file| {
+  $file
+}
+
+notify { "Files in ${directory}: ${files}": }
+
 
 
 
