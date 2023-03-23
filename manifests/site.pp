@@ -7,10 +7,6 @@
 #}
 $directory = '/etc/puppetlabs/puppet'
 
-file { $directory:
-  ensure => directory,
-}
-
 $files = file("${directory}").children.each |$file| {
   $file
 }
