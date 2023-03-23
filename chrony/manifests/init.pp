@@ -1,10 +1,10 @@
 # chrony/manifests/init.pp
 class chrony  {
   package { 'chrony':
-    ensure => 'installed',
+    ensure => installed,
   }
   service { 'chronyd':
-    ensure => 'running',
+    ensure => running,
     enable => true,
     require => Package['chrony'],
   }
