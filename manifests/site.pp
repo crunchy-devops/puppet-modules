@@ -17,4 +17,4 @@ Exec['my_exec_command']->Notify['results']
 notify{'results':
   message => "c'est la directory puppet : ${result}",
 }
-$result = split(trim($::output),"\n")
+$result = split($::output,"\n")
