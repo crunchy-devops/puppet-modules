@@ -9,9 +9,8 @@ exec { 'my_exec_command':
   command => 'ls -alrt',
   path   =>'/usr/bin/:/usr/local/bin',
   cwd  => '/etc/puppetlabs/puppet/',
-  returns => $result,
+
 }
 
-notify{ $result :
-}
+
 
