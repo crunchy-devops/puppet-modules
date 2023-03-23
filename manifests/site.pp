@@ -6,7 +6,7 @@
 #  content  => "Hello world\n",
 #}
 $my_directory = '/etc/puppetlabs/puppet/'
-$directory_contents = generate('file','list',$my_directory)
+$directory_contents = generate("/usr/bin/ls ${my_directory}")
 
 $directory_contents.each |$item| {
   notify{ $item :
