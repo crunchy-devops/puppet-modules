@@ -12,11 +12,10 @@ exec { 'my_exec_command':
   logoutput => true,
   refreshonly => true,
 }
-$result = []
+$result = split($::output,"\n")
 Exec['my_exec_command']->Notify['results']
 
 notify{'results':
   message => "c'est la directory puppet : ${result}",
 }
 
-$result = split($::output,"\n")
