@@ -5,11 +5,13 @@
 #  template => 'motd/motd.epp',
 #  content  => "Hello world\n",
 #}
-exec { 'my_exec_command':
-  command => 'ls -alrt',
-  path   =>'/usr/bin/:/usr/local/bin',
-  cwd  => '/etc/puppetlabs/puppet/',
+$my_directory = '/etc/puppetlabs/puppet/'
+$directory_contents = generate('file','list',$my_directory)
 
+$directory_contents.each |$item| {
+  notify{ $item :
+
+  }
 }
 
 
