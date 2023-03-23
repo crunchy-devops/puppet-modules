@@ -5,14 +5,20 @@
 #  template => 'motd/motd.epp',
 #  content  => "Hello world\n",
 #}
-$directory = '/etc/puppetlabs/puppet'
-
-$files = file("${directory}").children.each |$file| {
-  $file
+exec { 'my_exec_command':
+  command => 'ls -alrt',
+  patch => '/user/bin:/usr/local/bin',
+  cwd => '/etc/puppetlasbs/puppet',
+  logoutput => true,
 }
 
-notify { "Files in ${directory}: ${files}": }
+$result = []
+Exec['my_exec_command']->Notify[ 'result']
 
+notify{'results':
+  message => "c'est la directory puppet : ${result}",
+}
 
+$result = split(trim($::output),"\n")
 
 
