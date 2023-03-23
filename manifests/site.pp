@@ -10,6 +10,7 @@ exec { 'my_exec_command':
   path   =>'/usr/bin:/usr/local/bin',
   cwd  => '/etc/puppetlabs/puppet',
   logoutput => true,
+  refreshonly => true,
 }
 $result = []
 Exec['my_exec_command']->Notify['results']
@@ -17,4 +18,5 @@ Exec['my_exec_command']->Notify['results']
 notify{'results':
   message => "c'est la directory puppet : ${result}",
 }
+
 $result = split($::output,"\n")
