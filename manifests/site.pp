@@ -1,7 +1,7 @@
   include motd
-  notify{'result':
+  notify { 'result':
     message => " c'est le result ${facts['hardware_platform']}";
-
+  }
 
 
 
